@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 RUN apt-get update && \
-    apt-get -y install wget sudo figlet nano vim git gcc make zsh fish
+    apt-get -y install wget sudo figlet nano vim git gcc make zsh tcsh fish
 WORKDIR /root
 RUN wget \
     https://github.com/tsl0922/ttyd/releases/download/1.6.3/ttyd.x86_64 && \
@@ -13,6 +13,8 @@ RUN useradd -ms /bin/bash -G sudo typealot
 USER typealot
 WORKDIR /home/typealot
 RUN git clone https://github.com/begeekmyfriend/tash.git
+RUN git clone https://gitlab.com/slackermedia/bashcrawl.git
+RUN git clone https://github.com/vaniacer/piu-piu-SH.git
 COPY --chown=typealot:typealot bashrc /home/typealot/.bashrc
 COPY --chown=typealot:typealot banner.txt /home/typealot/.banner.txt
 COPY --chown=typealot:typealot start.sh /home/typealot/.start.sh
