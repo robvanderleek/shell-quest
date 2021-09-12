@@ -15,8 +15,10 @@ WORKDIR /home/typealot
 RUN git clone https://github.com/begeekmyfriend/tash.git
 RUN git clone https://gitlab.com/slackermedia/bashcrawl.git
 RUN git clone https://github.com/vaniacer/piu-piu-SH.git
+RUN git clone https://github.com/brenns10/lsh.git
 COPY --chown=typealot:typealot bashrc /home/typealot/.bashrc
 COPY --chown=typealot:typealot banner.txt /home/typealot/.banner.txt
 COPY --chown=typealot:typealot start.sh /home/typealot/.start.sh
+COPY --chown=typealot:typealot cshrc /home/typealot/.cshrc
 EXPOSE 7681
 ENTRYPOINT ["/home/typealot/.start.sh"]

@@ -1,6 +1,6 @@
 #!/bin/bash
 IFS=
-banner=$(cat /dev/stdin | figlet -w 999)
+banner=`cat /dev/stdin | figlet -w 999`
 columns=`tput cols`
 spacer=`cat /dev/zero | head -c $columns | tr '\0' ' '`
 banner_with_spacer=`echo $banner | sed "s/^/$spacer/"`
