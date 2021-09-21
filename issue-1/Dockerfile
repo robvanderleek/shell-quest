@@ -1,15 +1,12 @@
 FROM ubuntu:20.04
 RUN apt-get update && \
-    apt-get -y install wget sudo figlet nano vim git gcc make zsh tcsh fish
+    apt-get -y install wget curl sudo figlet nano vim git gcc make zsh tcsh fish
 WORKDIR /root
-RUN wget \
-    https://github.com/tsl0922/ttyd/releases/download/1.6.3/ttyd.x86_64 && \
-    chmod 755 ttyd.x86_64 && mv ttyd.x86_64 /usr/local/bin
 RUN git clone https://github.com/begeekmyfriend/tash.git && \
     cd tash && make && cp tash /usr/local/bin && \
     echo "/usr/local/bin/tash" >> /etc/shells
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN useradd -ms /bin/bash -G sudo typealot
+RUN useradd -ms /bin/bash -G sudo typealot && echo "typealot:joshua" | chpasswd
 USER typealot
 WORKDIR /home/typealot
 RUN git clone https://github.com/begeekmyfriend/tash.git
@@ -20,7 +17,7 @@ COPY --chown=typealot:typealot bashrc /home/typealot/.bashrc
 COPY --chown=typealot:typealot banner.txt /home/typealot/.banner.txt
 COPY --chown=typealot:typealot start.sh /home/typealot/.start.sh
 COPY --chown=typealot:typealot cshrc /home/typealot/.cshrc
+COPY --chown=typealot:typealot zshrc /home/typealot/.zshrc
 COPY --chown=typealot:typealot fish_prompt.fish \
     /home/typealot/.config/fish/functions/fish_prompt.fish
-EXPOSE 7681
 ENTRYPOINT ["/home/typealot/.start.sh"]
