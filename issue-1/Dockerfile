@@ -6,7 +6,7 @@ RUN git clone https://github.com/begeekmyfriend/tash.git && \
     cd tash && make && cp tash /usr/local/bin && \
     echo "/usr/local/bin/tash" >> /etc/shells
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN useradd -ms /bin/bash -G sudo typealot && echo "typealot:joshua" | chpasswd
+RUN useradd -ms /bin/bash -G sudo typealot && echo "typealot:tab" | chpasswd
 USER typealot
 WORKDIR /home/typealot
 RUN git clone https://github.com/begeekmyfriend/tash.git
