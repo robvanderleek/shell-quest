@@ -1,10 +1,7 @@
 #!/bin/bash
 words=($(grep '^\w\w\w\w\w$' /usr/share/dict/words | tr '[a-z]' '[A-Z]'))
 actual=${words[$[$RANDOM % ${#words[@]}]]} end=false guess_count=0 max_guess=6
-if [[ $1 == "unlimit" ]]; then
-    max_guess=999999
-endif
-while [[ $end != true ]]; do
+whil [[ $end != true ]]; do
     guess_count=$(( $guess_count + 1 ))
     if [[ $guess_count -le $max_guess ]]; then
         echo "Enter your guess ($guess_count / $max_guess):"
